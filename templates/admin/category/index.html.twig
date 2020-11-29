@@ -1,0 +1,23 @@
+{% extends 'admin/adminbase.html.twig' %}
+{% block body %}
+
+    <h1>
+        {{ title }}
+    </h1>
+    <a href="{{ path('admin_category_create') }}">Создать категорию</a><br>
+
+    {% for message in app.flashes('success') %}
+        <p>{{ message }}</p>
+    {% endfor %}
+
+    <h2>Список категорий</h2>
+    <ul>
+        {% for category_item in category %}
+            <li>
+                {{ category_item.title }}
+                <a href="{{ path('admin_category_update', {'id': category_item.id }) }}">Редактировать</a>
+
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

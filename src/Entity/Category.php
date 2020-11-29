@@ -10,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Category
 {
+    public const PUBLISHED = 1;
+    public const DRAFT = 0;
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -76,6 +80,11 @@ class Category
         return $this;
     }
 
+    public function setCreateAtValue()
+    {
+        $this->create_at = new \DateTime();
+    }
+
     public function getCreateAt(): ?\DateTimeInterface
     {
         return $this->create_at;
@@ -93,6 +102,11 @@ class Category
         return $this->update_at;
     }
 
+    public function setUpdateAtValue()
+    {
+        $this->update_at = new \DateTime();
+    }
+
     public function setUpdateAt(\DateTimeInterface $update_at): self
     {
         $this->update_at = $update_at;
@@ -105,13 +119,6 @@ class Category
         return $this->is_published;
     }
 
-    public function setIsPublished(bool $is_published): self
-    {
-        $this->is_published = $is_published;
-
-        return $this;
-    }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -122,5 +129,16 @@ class Category
         $this->image = $image;
 
         return $this;
+    }
+
+    public function setIsPublished()
+    {
+        $this->is_published = self::PUBLISHED;
+
+    }
+
+    public function setIsDraft()
+    {
+        $this->is_published = self::DRAFT;
     }
 }
