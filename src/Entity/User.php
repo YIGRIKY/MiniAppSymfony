@@ -35,6 +35,8 @@ class User implements UserInterface
      */
     private $password;
 
+    private $plainPassword;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -111,5 +113,17 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+
+    public function setPlainPassword($password): void
+    {
+        $this->plainPassword = $password;
     }
 }
