@@ -789,7 +789,7 @@ false Zulu
     <database id="2" parent="1" name="learning">
       <ObjectId>16395</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>509</IntrospectionStateNumber>
+      <IntrospectionStateNumber>517</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <database id="3" parent="1" name="postgres">
@@ -846,7 +846,7 @@ false Zulu
       <Comment>standard public schema</Comment>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>510</IntrospectionStateNumber>
+      <IntrospectionStateNumber>518</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="16" parent="2" name="heap">
@@ -916,98 +916,247 @@ false Zulu
     <language id="25" parent="2" name="internal"/>
     <language id="26" parent="2" name="plpgsql"/>
     <language id="27" parent="2" name="sql"/>
-    <sequence id="28" parent="15" name="user_id_seq">
+    <sequence id="28" parent="15" name="comment_id_seq">
+      <ObjectId>24603</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>513</StateNumber>
+      <DataType>bigint|0s</DataType>
+    </sequence>
+    <sequence id="29" parent="15" name="post_id_seq">
+      <ObjectId>24605</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>513</StateNumber>
+      <DataType>bigint|0s</DataType>
+    </sequence>
+    <sequence id="30" parent="15" name="user_id_seq">
       <ObjectId>24592</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>502</StateNumber>
       <DataType>bigint|0s</DataType>
     </sequence>
-    <table id="29" parent="15" name="doctrine_migration_versions">
+    <table id="31" parent="15" name="comment">
+      <ObjectId>24607</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>516</StateNumber>
+    </table>
+    <table id="32" parent="15" name="doctrine_migration_versions">
       <ObjectId>24586</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>501</StateNumber>
     </table>
-    <table id="30" parent="15" name="user">
+    <table id="33" parent="15" name="post">
+      <ObjectId>24616</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>513</StateNumber>
+    </table>
+    <table id="34" parent="15" name="user">
       <ObjectId>24594</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>502</StateNumber>
     </table>
-    <column id="31" parent="29" name="version">
+    <column id="35" parent="31" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>513</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="36" parent="31" name="post_id">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>513</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="37" parent="31" name="content">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>513</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="38" parent="31" name="create_at">
+      <Position>4</Position>
+      <DataType>timestamp(0)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>513</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="39" parent="31" name="is_published">
+      <Position>5</Position>
+      <DataType>boolean|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>516</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <index id="40" parent="31" name="comment_pkey">
+      <ObjectId>24613</ObjectId>
+      <StateNumber>513</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <index id="41" parent="31" name="idx_9474526c4b89032c">
+      <ObjectId>24615</ObjectId>
+      <StateNumber>513</StateNumber>
+      <ColNames>post_id</ColNames>
+    </index>
+    <key id="42" parent="31" name="comment_pkey">
+      <ObjectId>24614</ObjectId>
+      <StateNumber>513</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>comment_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="43" parent="31" name="fk_9474526c4b89032c">
+      <ObjectId>24625</ObjectId>
+      <StateNumber>513</StateNumber>
+      <ColNames>post_id</ColNames>
+      <RefTableId>24616</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>post</RefTableName>
+      <RefKeyName>post_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="44" parent="32" name="version">
       <Position>1</Position>
       <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>501</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="32" parent="29" name="executed_at">
+    <column id="45" parent="32" name="executed_at">
       <Position>2</Position>
       <DataType>timestamp(0)|0s</DataType>
       <StateNumber>501</StateNumber>
       <DefaultExpression>NULL::timestamp without time zone</DefaultExpression>
       <TypeId>1114</TypeId>
     </column>
-    <column id="33" parent="29" name="execution_time">
+    <column id="46" parent="32" name="execution_time">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>501</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="34" parent="29" name="doctrine_migration_versions_pkey">
+    <index id="47" parent="32" name="doctrine_migration_versions_pkey">
       <ObjectId>24590</ObjectId>
       <StateNumber>501</StateNumber>
       <ColNames>version</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="35" parent="29" name="doctrine_migration_versions_pkey">
+    <key id="48" parent="32" name="doctrine_migration_versions_pkey">
       <ObjectId>24591</ObjectId>
       <StateNumber>501</StateNumber>
       <ColNames>version</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>doctrine_migration_versions_pkey</UnderlyingIndexName>
     </key>
-    <column id="36" parent="30" name="id">
+    <column id="49" parent="33" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>513</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="50" parent="33" name="title">
+      <Position>2</Position>
+      <DataType>varchar(1000)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>513</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="51" parent="33" name="content">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>513</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="52" parent="33" name="image">
+      <Position>4</Position>
+      <DataType>varchar(500)|0s</DataType>
+      <StateNumber>513</StateNumber>
+      <DefaultExpression>NULL::character varying</DefaultExpression>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="53" parent="33" name="create_at">
+      <Position>5</Position>
+      <DataType>timestamp(0)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>513</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="54" parent="33" name="update_at">
+      <Position>6</Position>
+      <DataType>timestamp(0)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>513</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="55" parent="33" name="is_published">
+      <Position>7</Position>
+      <DataType>boolean|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>513</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <index id="56" parent="33" name="post_pkey">
+      <ObjectId>24623</ObjectId>
+      <StateNumber>513</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="57" parent="33" name="post_pkey">
+      <ObjectId>24624</ObjectId>
+      <StateNumber>513</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>post_pkey</UnderlyingIndexName>
+    </key>
+    <column id="58" parent="34" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>502</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="37" parent="30" name="email">
+    <column id="59" parent="34" name="email">
       <Position>2</Position>
       <DataType>varchar(180)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>502</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="38" parent="30" name="roles">
+    <column id="60" parent="34" name="roles">
       <Position>3</Position>
       <DataType>json|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>502</StateNumber>
       <TypeId>114</TypeId>
     </column>
-    <column id="39" parent="30" name="password">
+    <column id="61" parent="34" name="password">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>502</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="40" parent="30" name="user_pkey">
+    <index id="62" parent="34" name="user_pkey">
       <ObjectId>24600</ObjectId>
       <StateNumber>502</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <index id="41" parent="30" name="uniq_8d93d649e7927c74">
+    <index id="63" parent="34" name="uniq_8d93d649e7927c74">
       <ObjectId>24602</ObjectId>
       <StateNumber>502</StateNumber>
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="42" parent="30" name="user_pkey">
+    <key id="64" parent="34" name="user_pkey">
       <ObjectId>24601</ObjectId>
       <StateNumber>502</StateNumber>
       <ColNames>id</ColNames>
