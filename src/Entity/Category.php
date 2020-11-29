@@ -2,19 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\PostRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Date;
 
 /**
- * @ORM\Entity(repositoryClass=PostRepository::class)
+ * @ORM\Entity(repositoryClass=CategoryRepository::class)
  */
-class Post
+class Category
 {
-    public const PUBLISHED = 1;
-    public const DRAFT = 0;
-
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -28,14 +23,9 @@ class Post
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $content;
-
-    /**
-     * @ORM\Column(type="string", length=500, nullable=true)
-     */
-    private $image;
+    private $description;
 
     /**
      * @ORM\Column(type="datetime")
@@ -53,10 +43,9 @@ class Post
     private $is_published;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=500, nullable=true)
      */
-    private $category;
+    private $image;
 
     public function getId(): ?int
     {
@@ -75,33 +64,16 @@ class Post
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getDescription(): ?string
     {
-        return $this->content;
+        return $this->description;
     }
 
-    public function setContent(string $content): self
+    public function setDescription(?string $description): self
     {
-        $this->content = $content;
+        $this->description = $description;
 
         return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function setCreateAtValue()
-    {
-        $this->create_at = new \DateTime();
     }
 
     public function getCreateAt(): ?\DateTimeInterface
@@ -121,11 +93,6 @@ class Post
         return $this->update_at;
     }
 
-    public function setUpdateAtValue()
-    {
-        $this->update_at = new \DateTime();
-    }
-
     public function setUpdateAt(\DateTimeInterface $update_at): self
     {
         $this->update_at = $update_at;
@@ -138,25 +105,21 @@ class Post
         return $this->is_published;
     }
 
-    public function setIsPublished()
+    public function setIsPublished(bool $is_published): self
     {
-        $this->is_published = self::PUBLISHED;
+        $this->is_published = $is_published;
 
+        return $this;
     }
 
-    public function setIsDraft()
+    public function getImage(): ?string
     {
-        $this->is_published = self::DRAFT;
+        return $this->image;
     }
 
-    public function getCategory(): ?Category
+    public function setImage(?string $image): self
     {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
+        $this->image = $image;
 
         return $this;
     }
